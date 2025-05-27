@@ -1,0 +1,262 @@
+/* uppper navbar */
+.upper_bar {
+  height: 70px;
+  width: 100%;
+  display: flex;
+  background-color: #fcc048;
+}
+/* drop down container for English*/
+.drop_down {
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  border-radius: 10px;
+  left: 30px;
+  top: 11px;
+  height: 50px;
+  width: 134px;
+  font-size: 20px;
+  background-color: #52bee2;
+  color: white;
+}
+.english {
+  position: relative;
+  top: 10px;
+}
+/* drop down containt for English*/
+.dropdown-content-english {
+  display: none;
+  position: absolute;
+  border-radius: 10px;
+  text-align: center;
+  top: 44px;
+  z-index: 1;
+  height: 50px;
+  width: 134px;
+  font-size: 20px;
+  background-color: white;
+  color: black;
+}
+/* hover on drop down conteiner English */
+.drop_down:hover .dropdown-content-english {
+  display: block;
+}
+.profile-right-box {
+  display: flex;
+  position: relative;
+  border-radius: 10px;
+  left: 800px;
+  top: 11px;
+  height: 50px;
+  width: 350px;
+}
+/* profile img */
+.profile {
+  position: relative;
+  border: 3px solid #52bee2;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  background-color: white;
+}
+.profile-img {
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  cursor: pointer;
+}
+/* profile DropDown */
+.dropdown-profile {
+  position: relative;
+}
+.profile-popup {
+  z-index: 999;
+  position: absolute;
+  top: 190px;
+  right: 300px;
+  border-radius: 20px;
+  height: 290px;
+  width: 540px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  background-color: white;
+}
+.profile-icon {
+  position: relative;
+  top: 60px;
+  color: #52bee2;
+  left: 250px;
+  transform: scale(7);
+}
+.profile-popup-text {
+  position: relative;
+  font-size: 20px;
+  top: 130px;
+  left: 100px;
+}
+.login-button {
+  position: relative;
+  top: 150px;
+  border: 1px solid #52bee2;
+  border-radius: 10px;
+  padding: 5px 20px 5px 20px;
+  background-color: #52bee2;
+  color: white;
+  left: 170px;
+  transform: scale(1.2);
+  transition: all 0.3s ease;
+}
+.login-button:hover {
+  opacity: 0.8;
+}
+.cancel-button {
+  position: relative;
+  top: 150px;
+  left: 200px;
+  border: 1px solid #fcc048;
+  background-color: #fcc048;
+  color: white;
+  border-radius: 10px;
+  padding: 5px 20px 5px 20px;
+  transform: scale(1.2);
+  transition: all 0.3s ease;
+}
+.cancel-button:hover {
+  opacity: 0.8;
+}
+/* profile-text */
+.profile-text {
+  position: relative;
+  border-radius: 10px;
+  text-align: center;
+  left: 10px;
+  height: 50px;
+  width: 134px;
+  font-size: 20px;
+  background-color: #52bee2;
+  color: white;
+}
+.text-guest {
+  position: relative;
+  top: 11px;
+}
+/* login icon  */
+.login-icon {
+  position: relative;
+  left: 20px;
+  border-radius: 10px;
+  height: 50px;
+  width: 50px;
+  background: #52bee2;
+}
+.login-img {
+  position: relative;
+  top: 11px;
+  left: 14px;
+  color: white;
+  transform: scale(2);
+}
+/* navigation bar */
+.navbar {
+  position: fixed;
+  display: flex;
+  background-color: #0e121d;
+  height: 120px;
+  width: 100%;
+}
+/* image in navigation bar */
+.logo_image {
+  height: 90px;
+  width: 250px;
+  background-color: #52bee2;
+  position: relative;
+  left: 100px;
+}
+/* right side bar */
+.bar {
+  height: 90px;
+  width: 700px;
+  position: relative;
+  left: 50px;
+  display: flex;
+  justify-content: center;
+
+  justify-content: space-around;
+  color: black;
+}
+.quizz,
+.instract,
+.home {
+  font-size: 20px;
+  text-decoration: none;
+  border-radius: 10px;
+  padding-top: 5px;
+  position: relative;
+  top: 25px;
+  height: 40px;
+  width: 150px;
+  text-align: center;
+  background-color: white;
+  color: black;
+}
+/* hover on home quiz instraction and more */
+.quizz:hover {
+  border: 3px solid #52bee2;
+}
+.instract:hover {
+  border: 3px solid #52bee2;
+}
+.home:hover {
+  border: 3px solid #52bee2;
+}
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+/* drop down start from here */
+.drop-more {
+  display: inline-block;
+  position: relative;
+  background-color: white;
+  border-radius: 10px;
+  top: 25px;
+  height: 40px;
+  width: 130px;
+}
+.more {
+  position: relative;
+  padding: 10px;
+  cursor: pointer;
+  text-align: center;
+  font-size: 20px;
+  top: -6px;
+}
+.drop-more:hover {
+  border: 3px solid #52bee2;
+}
+.drop-more:hover .dropdown-content {
+  display: block;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  border-radius: 10px;
+  top: 45px;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  margin: 10px 10px 10px 10px;
+  font-size: 20px;
+  text-decoration: none;
+  display: block;
+}
+.dropdown-content a:hover {
+  background-color: rgb(228, 227, 227);
+  border: 1px solid #52bee2;
+  border-radius: 10px;
+}
+
