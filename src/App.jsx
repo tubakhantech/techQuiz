@@ -18,7 +18,7 @@ import Contact from "./homepage/Contact";
 import About from "./homepage/About";
 import Qution from "./public/Qution";
 import Quetion2 from "./public/Quetion2";
-import Question3 from "./public/Quetion3";
+import Quetion3 from "./public/Quetion3";
 import Profileinfo from "./homepage/Profileinfo";
 import ProtectedRoute from "./login/ProtectedRoute";
 
@@ -74,7 +74,7 @@ function App() {
           {/* ✅ Quiz routes */}
           <Route path="/quiz/:topic" element={<Qution />} />
           <Route path="/quiz2/:topic" element={<Quetion2 />} />
-          <Route path="/quiz3/:topic" element={<Question3 />} />
+          <Route path="/quiz3/:topic" element={<Quetion3 />} />
         </Route>
       </Routes>
     </BrowserRouter>
