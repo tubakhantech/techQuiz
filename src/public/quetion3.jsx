@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import data3 from './data3';
 import MyImage from "../assets/logo1.png";
 
-const question3 = () => {
+const Question3 = () => {
   const { topic } = useParams();
   const questions = data3[topic];
 
@@ -115,48 +115,48 @@ const question3 = () => {
 
   return (
     <>
-    {/* Header always rendered */}
-    <div className='Quiz-header-container'>
-      <img src={MyImage} alt="logo" className='Quiz-header-container-logo' />
-      <div className='header-title-time-box'>
-        <div className='Quiz-header-container-title'>Expert</div>
-        <div className='quiz-timer'>Time Taken: {timeElapsed}s</div>
+      {/* Header always rendered */}
+      <div className='Quiz-header-container'>
+        <img src={MyImage} alt="logo" className='Quiz-header-container-logo' />
+        <div className='header-title-time-box'>
+          <div className='Quiz-header-container-title'>Expert</div>
+          <div className='quiz-timer'>Time Taken: {timeElapsed}s</div>
+        </div>
       </div>
-    </div>
-    <div className="container-body">
-      <div className="qution-container">
-        <h1 className='qution-header'>Quiz: {topic}</h1>
-        <hr className='container-line'/>
-        {!result ? (
-          <>
-            <h2 className='qution-qution'>{index + 1}. {question.question}</h2>
-            <ul className='qution-option'>
-              <li ref={options1} onClick={(e) => checkanswer(e, 1)}>{question.options1}</li>
-              <li ref={options2} onClick={(e) => checkanswer(e, 2)}>{question.options2}</li>
-              <li ref={options3} onClick={(e) => checkanswer(e, 3)}>{question.options3}</li>
-              <li ref={options4} onClick={(e) => checkanswer(e, 4)}>{question.options4}</li>
-            </ul>
-            <button onClick={next} className='qution-button'>Next</button>
-            <div className="intex-number">
-              {index + 1} of {questions.length}
-            </div>
-          </>
-        ) : (
-          <>
-            <h2>🎉 Quiz Completed!</h2>
-            <div className="result-metrics">
-              <p>✅ Correct Answers: {score} / {questions.length}</p>
-              <p>🎯 Score Percentage: {((score / questions.length) * 100).toFixed(2)}%</p>
-              <p>💡 Points Earned: {score * 10}</p>
-              <p>⏱️ Time Taken: {Math.floor((Date.now() - startTime) / 1000)}s</p>
-            </div>
-            <button onClick={reset} className='qution-button'>Reset</button>
-          </>
-        )}
+      <div className="container-body">
+        <div className="qution-container">
+          <h1 className='qution-header'>Quiz: {topic}</h1>
+          <hr className='container-line' />
+          {!result ? (
+            <>
+              <h2 className='qution-qution'>{index + 1}. {question.question}</h2>
+              <ul className='qution-option'>
+                <li ref={options1} onClick={(e) => checkanswer(e, 1)}>{question.options1}</li>
+                <li ref={options2} onClick={(e) => checkanswer(e, 2)}>{question.options2}</li>
+                <li ref={options3} onClick={(e) => checkanswer(e, 3)}>{question.options3}</li>
+                <li ref={options4} onClick={(e) => checkanswer(e, 4)}>{question.options4}</li>
+              </ul>
+              <button onClick={next} className='qution-button'>Next</button>
+              <div className="intex-number">
+                {index + 1} of {questions.length}
+              </div>
+            </>
+          ) : (
+            <>
+              <h2>🎉 Quiz Completed!</h2>
+              <div className="result-metrics">
+                <p>✅ Correct Answers: {score} / {questions.length}</p>
+                <p>🎯 Score Percentage: {((score / questions.length) * 100).toFixed(2)}%</p>
+                <p>💡 Points Earned: {score * 10}</p>
+                <p>⏱️ Time Taken: {Math.floor((Date.now() - startTime) / 1000)}s</p>
+              </div>
+              <button onClick={reset} className='qution-button'>Reset</button>
+            </>
+          )}
+        </div>
       </div>
-    </div>
     </>
   );
 };
 
-export default question3;
+export default Question3;
