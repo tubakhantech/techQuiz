@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import data3 from './data3';
 import MyImage from "../assets/logo1.png";
 
-const Question3 = () => {
+const Quetion3 = () => {
     const { topic } = useParams();
     const questions = data3[topic];
 
@@ -159,4 +159,4 @@ const Question3 = () => {
     );
 };
 
-export default Question3;
+export default Quetion3;
