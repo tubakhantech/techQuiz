@@ -1,0 +1,181 @@
+* {
+  box-sizing: border-box;
+}
+/* 📌 Container grid for beginner cards */
+.main-beginner {
+    margin-top: 50px;
+    padding: 0px 80px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 50px;
+    width: 100%; 
+    background-image: linear-gradient(#f5f7fa, #f5f7fa); /* Soft background */
+}
+
+/* 📌 Individual quiz card */
+.card-beginner {
+    height: 100%;
+    width: 400px;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    margin: 0 auto;
+}
+
+/* 📌 Card hover effect */
+.card-beginner:hover {
+    border: 2px solid #52bee2; /* Blue from navbar */
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    transform: translateY(-4px);
+}
+
+/* 📌 Image/logo section */
+.logo-picture-beginner {
+    height: 250px;
+    width: 100%;
+    border-radius: 10px 10px 0 0;
+    background-color: #e0e0e0; /* Placeholder grey */
+    overflow: hidden;
+}
+.logo-picture-beginner img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+}
+
+/* 📌 Question badge */
+.question-no-beginner {
+    position: relative;
+    left: 25px;
+    top: -30px;
+    height: 30px;
+    width: 50px;
+    border-radius: 3px;
+    text-align: center;
+    background-color: #fcc048; /* Yellow from navbar */
+    color: black;
+    line-height: 30px;
+}
+
+/* 📌 Plays badge */
+.plays-no-beginner {
+    position: relative;
+    left: 295px;
+    top: -60px;
+    height: 30px;
+    width: 80px;
+    border-radius: 3px;
+    text-align: center;
+    background-color: #fcc048; /* Yellow from navbar */
+    color: black;
+    line-height: 30px;
+}
+
+/* 📌 Inner content of card */
+.inner-box-beginner {
+    position: relative;
+    top: -20px;
+    left: 30px;
+    height: 250px;
+    width: 348px;
+}
+
+/* 📌 Title */
+.title-beginner {
+    line-height: 30px;
+    font-weight: bold;
+}
+
+/* 📌 Quiz topic name badge */
+.quiz-name-beginner {
+    position: relative;
+    top: 7px;
+    height: 28px;
+    width: 120px; /* keep as is */
+    font-size: 16px;
+    text-align: center;
+    font-weight: 500;
+    background-color: #52bee2;
+    border: 3px solid #52bee2;
+    color: #303030;
+    border-radius: 5px;
+    line-height: 28px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 📌 Grade icon */
+.grade-icon-beginner {
+    position: absolute;
+    top: 118px;
+    left: 10px;
+    transform: scale(1.5);
+}
+
+/* 📌 Level icon */
+.level-icon-beginner {
+    position: absolute;
+    top: 155px;
+    left: 10px;
+    transform: scale(1.5);
+}
+
+/* 📌 Grade text */
+.grade-text-beginner {
+    position: relative;
+    top: 10px;
+    left: 40px;
+    font-weight: 600;
+    color: #333;
+}
+
+/* 📌 Level text */
+.level-text-beginner {
+    position: relative;
+    top: 5px;
+    left: 40px;
+    font-weight: 600;
+    color: #333;
+}
+
+/* 📌 Play Now button */
+.play-now-beginner {
+    position: relative;
+    top: 10px;
+    left: 7px;
+    padding: 7px 50px;
+    border-radius: 5px;
+    font-size: 18px;
+    background-color: white;
+    color: #52bee2;
+    border: 2px solid #52bee2;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* 📌 Play Now button hover effect */
+.play-now-beginner:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    background-color:#52bee2;
+    color: #303030;
+}
+
+/* 📌 Responsive grid for small devices */
+@media (max-width: 1200px) {
+  .main-beginner {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0 40px;
+  }
+}
+
+@media (max-width: 800px) {
+  .main-beginner {
+    grid-template-columns: 1fr;
+    padding: 0 20px
+  }
+}

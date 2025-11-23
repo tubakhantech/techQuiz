@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import "./Header.css";
 import { IoLogInOutline } from "react-icons/io5";
 import { MdErrorOutline } from "react-icons/md";
@@ -8,15 +8,92 @@ import MyImage from "../assets/logo1.png";
 const Header = () => {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [profile, setProfile] = useState(false);
+  const [isSignedUp, setIsSignedUp] = useState(false);
+  const [userName, setUserName] = useState("Guest");
+  const [showMysteryBox, setShowMysteryBox] = useState(false);
 
   const navigate = useNavigate();
+  const location = useLocation();
 
-  const toggleMobileMenu = () => {
-    setShowMobileMenu(!showMobileMenu);
+  // ✅ Keep login state synced on route change
+  useEffect(() => {
+    const signedUp = localStorage.getItem("isSignedUp") === "true";
+    const name = localStorage.getItem("userName") || "Guest";
+    setIsSignedUp(signedUp);
+    setUserName(name);
+
+    checkMilestoneAndShow(); // Also check milestone on route change
+  }, [location.pathname]);
+
+  // ✅ Listen for 'checkMilestone' events triggered by quiz
+  useEffect(() => {
+    const handleCheck  = () => {
+      console.log("✅ checkMilestone event received! Calling milestone check...");
+      checkMilestoneAndShow();
+    };
+
+    window.addEventListener("checkMilestone", handleCheck);
+
+    return () => {
+      window.removeEventListener("checkMilestone", handleCheck);
+    };
+  }, []);
+
+  // ✅ Milestone check function
+  const checkMilestoneAndShow = () => {
+    const email = localStorage.getItem("email");
+    if (!email){
+      console.log("No email found in localStorage");
+      return;
+    }
+
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    const foundUser = users.find((u) => u.email === email);
+    if (!foundUser){
+      console.log("User not found in localStorage");
+      return;
+    }
+
+    let updatedUser = { ...foundUser };
+    const updatedPoints = updatedUser.totalPoints || 0;
+    let lastRewardPoint = updatedUser.lastRewardPoint || 0;
+
+    // Calculate milestone as multiples of 100
+    let milestone = Math.floor(updatedPoints / 100) * 100;
+    console.log({ updatedPoints, lastRewardPoint, milestone });
+
+    if (milestone > lastRewardPoint && milestone <= 8000) {
+      console.log("Milestone reached, showing mystery box!");
+      // Show mystery box
+      setShowMysteryBox(true);
+
+      // Update lastRewardPoint
+      updatedUser.lastRewardPoint = milestone;
+
+      // Update user in localStorage
+      const index = users.findIndex((u) => u.email === email);
+      if (index !== -1) {
+        users[index] = updatedUser;
+        localStorage.setItem("users", JSON.stringify(users));
+        console.log("Updated users in localStorage with new lastRewardPoint");
+
+      }
+      else{
+        console.log("Milestone not reached or already rewarded.");
+      }
+    }
   };
 
-  const openPopup = () => {
-    setProfile(true);
+  const handleCloseMystery = () => {
+    setShowMysteryBox(false);
+  };
+
+  const handleProfileClick = () => {
+    if (isSignedUp) {
+      navigate("/info");
+    } else {
+      setProfile(true);
+    }
   };
 
   const closeButton = () => {
@@ -24,14 +101,34 @@ const Header = () => {
   };
 
   const gotoLogin = () => {
-    navigate("/login");
+    navigate("/Signup");
     setProfile(false);
-    setShowMobileMenu(false); // close mobile menu on login
+    setShowMobileMenu(false);
+  };
+
+  const toggleMobileMenu = () => {
+    setShowMobileMenu(!showMobileMenu);
+  };
+
+  const handleLogout = () => {
+    localStorage.clear();
+    window.location.href = "/";
   };
 
   return (
     <div>
-      {/* Upper bar */}
+      {/* 🎁 Mystery Box Popup */}
+      {showMysteryBox && (
+        <>
+          <div className="mystery-overlay" onClick={handleCloseMystery} />
+          <div className="mystery-box">
+            <h2>🎁 Mystery Box!</h2>
+            <p>Congratulations! Keep up the great work! 🚀</p>
+            <button onClick={handleCloseMystery}>Close</button>
+          </div>
+        </>
+      )}
+
       <div className="upper_bar">
         <div className="drop_down">
           <div className="english">
@@ -43,7 +140,7 @@ const Header = () => {
         </div>
 
         <div className="profile-right-box">
-          <div className="profile" onClick={openPopup}>
+          <div className="profile" onClick={handleProfileClick}>
             <img
               className="profile-img"
               src="https://i.pinimg.com/736x/19/99/9f/19999fb3c6c9df3d7e6b21f4155d37e2.jpg"
@@ -55,100 +152,82 @@ const Header = () => {
             <div className="profile-popup">
               <MdErrorOutline className="profile-icon" />
               <p className="profile-popup-text">
-                To access this feature, please log in.
+                To access this feature, please Sign Up.
               </p>
-              <button className="login-button" type="button" onClick={gotoLogin}>
-                Login
+              <button className="login-button" onClick={gotoLogin}>
+                Sign Up
               </button>
-              <button className="cancel-button" type="button" onClick={closeButton}>
+              <button className="cancel-button" onClick={closeButton}>
                 Cancel
               </button>
             </div>
           )}
 
           <div className="profile-text">
-            <p className="text-guest">Hello Guest</p>
+            <p className="text-guest">Hello {userName}</p>
           </div>
-          <NavLink className="login-icon" to="/login">
-            <IoLogInOutline className="login-img" />
-          </NavLink>
+
+          {isSignedUp ? (
+            <button className="logout-button" onClick={handleLogout}>
+              Logout
+            </button>
+          ) : (
+            <NavLink className="login-icon" to="/Signup">
+              <IoLogInOutline className="login-img" />
+            </NavLink>
+          )}
         </div>
       </div>
 
-      {/* Navigation bar */}
       <div className="navbar">
         <img className="logo_image" src={MyImage} alt="logo" />
 
-        <div className="bar">
+        <div className={`bar ${showMobileMenu ? "active" : ""}`}>
           <NavLink
-            className={({ isActive }) => (isActive ? "home active-link" : "home")}
+            className="home"
             to="/"
+            onClick={() => setShowMobileMenu(false)}
           >
-            Home
+            Beginner
           </NavLink>
           <NavLink
-            className={({ isActive }) => (isActive ? "quizz active-link" : "quizz")}
+            className="quizz"
             to="/quizz"
+            onClick={() => setShowMobileMenu(false)}
           >
-            Quiz Topic
+            Intermediate
           </NavLink>
           <NavLink
-            className={({ isActive }) => (isActive ? "instract active-link" : "instract")}
+            className="instract"
             to="/instraction"
+            onClick={() => setShowMobileMenu(false)}
           >
-            Instruction
+            Expert
           </NavLink>
           <div className="dropdown">
-            <div className="drop-more">
-              <p className="more">More</p>
-              <div className="dropdown-content">
-                <NavLink className="anchor" to="/contact">
-                  Contact Us
-                </NavLink>
-                <NavLink className="anchor" to="/about">
-                  About Us
-                </NavLink>
-                <NavLink className="anchor" to="/them">
-                  Theme
-                </NavLink>
-              </div>
+            <button className="menu-btn deropdown-toggle">More</button>
+            <div className="dropdown-content">
+              <NavLink
+                className="anchor"
+                to="/contact"
+                onClick={() => setShowMobileMenu(false)}
+              >
+                Contact Us
+              </NavLink>
+              <NavLink
+                className="anchor"
+                to="/about"
+                onClick={() => setShowMobileMenu(false)}
+              >
+                About Us
+              </NavLink>
             </div>
           </div>
         </div>
 
-        {/* Hamburger for Mobile */}
         <div className="hamburger" onClick={toggleMobileMenu}>
-          <div className="bar1"></div>
-          <div className="bar2"></div>
-          <div className="bar3"></div>
+          <div className="bar1">≡</div>
         </div>
-
-        {/* Mobile Menu */}
-        {showMobileMenu && (
-          <div className="mobile-menu">
-            <NavLink className="mobile-link" to="/" onClick={toggleMobileMenu}>
-              Home
-            </NavLink>
-            <NavLink className="mobile-link" to="/quizz" onClick={toggleMobileMenu}>
-              Quiz Topic
-            </NavLink>
-            <NavLink className="mobile-link" to="/instraction" onClick={toggleMobileMenu}>
-              Instruction
-            </NavLink>
-            <NavLink className="mobile-link" to="/contact" onClick={toggleMobileMenu}>
-              Contact Us
-            </NavLink>
-            <NavLink className="mobile-link" to="/about" onClick={toggleMobileMenu}>
-              About Us
-            </NavLink>
-            <NavLink className="mobile-link" to="/theme" onClick={toggleMobileMenu}>
-              Theme
-            </NavLink>
-            <button className="mobile-login" onClick={gotoLogin}>
-              Login
-            </button>
-          </div>
-        )}
       </div>
     </div>
   );

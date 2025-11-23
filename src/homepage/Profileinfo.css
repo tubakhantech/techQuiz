@@ -1,0 +1,78 @@
+/* Profileinfo.css */
+
+.profile-container {
+  min-height: 100vh;
+  background-image: linear-gradient(#52bee2, #fce38a);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 15px;
+}
+
+.profile-card {
+  display: flex;
+  flex-direction: row;
+  max-width: 800px;
+  width: 100%;
+  background: #1e293b;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+}
+
+.profile-left {
+  width: 40%;
+  background: linear-gradient(to bottom right, #ec4899, #f97316);
+  padding: 3rem 1.5rem;
+  text-align: center;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.avatar {
+  width: 90px;
+  height: 90px;
+  background: white;
+  color: #ec4899;
+  font-size: 2.5rem;
+  font-weight: bold;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.user-name {
+  margin-top: 1rem;
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.user-level {
+  font-size: 1rem;
+  color: #fefefe;
+  margin-top: 0.3rem;
+}
+
+.profile-right {
+  width: 60%;
+  padding: 2.5rem 2rem;
+  color: #e2e8f0;
+}
+
+.profile-right h3 {
+  color: #38bdf8;
+  margin-bottom: 0.8rem;
+  font-size: 1.3rem;
+}
+
+.profile-right p {
+  font-size: 1.05rem;
+  margin: 0.5rem 0;
+  line-height: 1.6;
+}

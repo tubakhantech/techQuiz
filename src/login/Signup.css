@@ -1,0 +1,103 @@
+/* 🔷 Page background */
+.body {
+  display: flex;
+  min-height: 100vh;
+  padding-bottom: 40px;
+  width: 100%;
+  background-image: linear-gradient(#52bee2, #fce38a) /* soft blue to yellow */
+}
+
+/* 🔷 Form container */
+.signupForm {
+  margin: auto;
+  padding: 20px 30px;
+  width: 95%;
+  max-width: 500px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border-radius: 8px;
+  border: 2px solid #52bee2;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* 🔷 Form heading */
+.heading {
+  text-align: center;
+  font-size: 40px;
+  font-weight: 600;
+  color: black;
+  margin-bottom: 20px;
+}
+
+/* 🔷 Input wrapper */
+.containerBox {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* 🔷 Labels */
+.fildName {
+  font-size: 18px;
+  margin-left: 5px;
+  color: #333;
+  font-weight: 500;
+}
+
+/* 🔷 Input fields */
+.inputBox {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #52bee2;
+  background-color: #ffffffb3; /* semi-transparent white */
+  font-size: 16px;
+  color: #000;
+}
+
+/* 🔷 Input focus */
+.inputBox:focus {
+  outline: none;
+  border-color: #52bee2;
+  box-shadow: 0 0 5px rgba(82, 190, 226, 0.5);
+}
+
+/* 🔷 Password eye icon */
+.inputContainer {
+  position: relative;
+}
+
+.eyeIcon {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #52bee2;
+  font-size: 18px;
+}
+
+/* 🔷 Error text */
+.noData {
+  font-size: 14px;
+  color: #d9534f;
+  margin-top: 5px;
+}
+
+/* 🔷 Signup button */
+.signupBotton {
+  font-size: 20px;
+  background-color: #52bee2;
+  padding: 10px 50px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  display: block;
+  margin: 20px auto 0 auto;
+  transition: all 0.3s ease;
+}
+
+.signupBotton:hover {
+  opacity: 0.8;
+}

@@ -1,0 +1,185 @@
+* {
+  box-sizing: border-box;
+}
+
+/* Headers */
+.upper-header-Expert,
+.lower-header-Expert {
+  text-align: center;
+  position: relative;
+  top: 50px;
+}
+
+/* Main Grid */
+.main-Expert {
+  margin-top: 50px;
+  padding: 0px 80px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 50px;
+  width: 100%; 
+  background-image: linear-gradient(#f5f7fa, #f5f7fa);
+}
+
+/* Cards */
+.card-Expert {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  margin: 0 auto; /* Center the card */
+}
+
+.card-Expert:hover {
+  border: 2px solid #52bee2;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  transform: translateY(-4px);
+}
+
+/* Image Area */
+.logo-picture-Expert {
+  height: 250px;
+  width: 100%;
+  background-color: #e0e0e0;
+  border-radius: 10px 10px 0 0;
+  overflow: hidden;
+}
+
+.logo-picture-Expert img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px 10px 0 0;
+}
+
+/* Question Count */
+.question-no-Expert {
+  position: relative;
+  left: 25px;
+  top: -30px;
+  height: 30px;
+  width: 50px;
+  border-radius: 3px;
+  text-align: center;
+  background-color: #f4b400;
+  color: black;
+  line-height: 30px;
+}
+
+/* Player Count */
+.plays-no-Expert {
+  position: relative;
+  left: calc(100% - 105px);
+  top: -60px;
+  height: 30px;
+  width: 80px;
+  border-radius: 3px;
+  text-align: center;
+  background-color: #fcc048;
+  color: black;
+  line-height: 30px;
+}
+
+/* Inside Card Content */
+.inner-box-Expert {
+  position: relative;
+  top: -20px;
+  left: 30px;
+  height: 250px;
+  width: 348px;
+}
+
+.title-Expert {
+  line-height: 30px;
+  font-weight: bold;
+}
+
+/* Topic Label */
+.quiz-name-Expert {
+  position: relative;
+  top: 7px;
+  height: 28px;
+  width: 120px; /* keep as is */
+  font-size: 16px;
+  text-align: center;
+  font-weight: 500;
+  background-color: #52bee2;
+  border: 3px solid #52bee2;
+  color: #303030;
+  border-radius: 5px;
+  line-height: 28px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Icons and Text */
+.grade-icon-Expert{
+  position: absolute;
+  transform: scale(1.5);
+  top: 118px;
+  left: 10px;
+}
+
+.level-icon-Expert {
+  position: absolute;
+  top: 155px;
+  left: 10px;
+  transform: scale(1.5);
+}
+
+.grade-text-Expert {
+  position: relative;
+  top: 10px;
+  left: 40px;
+  font-weight: 600;
+  color: #333;
+}
+
+.level-text-Expert {
+  position: relative;
+  top: 5px;
+  left: 40px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Play Now Button */
+.play-now-Expert {
+  position: relative;
+  top: 10px;
+  left: 7px;
+  padding: 7px 50px;
+  border-radius: 5px;
+  font-size: 18px;
+  background-color: white;
+  color: #52bee2;
+  border: 2px solid #52bee2;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.play-now-Expert:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  background-color:#52bee2;
+  color: #303030;
+}
+
+/* Responsive Layout */
+@media (max-width: 1200px) {
+  .main-Expert {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0 40px;
+  }
+}
+
+@media (max-width: 800px) {
+  .main-Expert {
+    grid-template-columns: 1fr;
+    padding: 0 20px;
+  }
+}

@@ -1,0 +1,80 @@
+.about-container {
+  max-width: 900px;
+  margin: 50px auto;
+  padding: 35px;
+  background-color: #1e1e2f;
+  border-radius: 12px;
+  color: #ffffff;
+  font-family: 'Segoe UI', sans-serif;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.about-container h1 {
+  text-align: center;
+  font-size: 36px;
+  color: #00d8ff;
+  margin-bottom: 20px;
+}
+
+.about-container h3 {
+  color: #fbbf24;
+  margin-top: 25px;
+}
+
+.about-container p {
+  line-height: 1.7;
+  margin-top: 12px;
+  font-size: 16px;
+}
+
+.about-container ul {
+  list-style: circle;
+  padding-left: 20px;
+  font-size: 16px;
+}
+
+.about-container strong {
+  color: #00ffae;
+}
+
+
+/* ---------- Tablet Responsive ---------- */
+@media (max-width: 768px) {
+  .about-container {
+    width: 85%;
+    padding: 25px 20px;
+  }
+
+  .about-container h1 {
+    font-size: 2rem;
+  }
+
+  .about-container h3 {
+    font-size: 1.3rem;
+  }
+
+  .about-container p,
+  .about-container ul li {
+    font-size: 1rem;
+  }
+}
+
+/* ---------- Mobile Responsive ---------- */
+@media (max-width: 480px) {
+  .about-container {
+    padding: 20px 15px;
+  }
+
+  .about-container h1 {
+    font-size: 1.7rem;
+  }
+
+  .about-container h3 {
+    font-size: 1.1rem;
+  }
+
+  .about-container p,
+  .about-container ul li {
+    font-size: 0.95rem;
+  }
+}

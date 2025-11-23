@@ -1,108 +1,54 @@
-import React, { useState } from "react";
-import "./Login.css"; // Assuming you have a CSS file for styling
+// UserProfile.jsx
+import React, { useEffect, useState } from 'react';
+import './UserProfile.css';
 
-const mockUsers = [
-  { email: "user1@example.com", password: "password123" },
-  { email: "user2@example.com", password: "mypassword" },
-];
+const UserProfile = () => {
+  const [user, setUser] = useState(null);
+  const [showProfile, setShowProfile] = useState(false);
 
-function LoginForm() {
-  const [formData, setFormData] = useState({ email: "", password: "" });
-  const [errors, setErrors] = useState({});
-  const [authError, setAuthError] = useState("");
-  const [submitted, setSubmitted] = useState(false);
-  const [showPassword, setShowPassword] = useState(false); // 👈 Added state
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-    setAuthError("");
-  };
-
-  const validate = () => {
-    let tempErrors = {};
-    if (!formData.email) {
-      tempErrors.email = "Email is required.";
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      tempErrors.email = "Email is invalid.";
+  useEffect(() => {
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    if (currentUser) {
+      setUser({
+        ...currentUser,
+        quizLevel: "Beginner",
+        score: 0,
+        points: 0,
+        isSignedUp: true,
+        image: `https://i.pravatar.cc/150?u=${currentUser.email}`
+      });
     }
-    if (!formData.password) {
-      tempErrors.password = "Password is required.";
-    }
-    return tempErrors;
-  };
+  }, []);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const validationErrors = validate();
-    setErrors(validationErrors);
-
-    if (Object.keys(validationErrors).length === 0) {
-      const userExists = mockUsers.find(
-        (user) =>
-          user.email === formData.email && user.password === formData.password
-      );
-
-      if (userExists) {
-        setSubmitted(true);
-        setAuthError("");
-        console.log("Login successful:", formData);
-      } else {
-        setAuthError("Account not found or incorrect credentials.");
-        setSubmitted(false);
-      }
+  const handleProfileClick = () => {
+    if (user?.isSignedUp) {
+      setShowProfile(!showProfile);
+    } else {
+      alert("Please sign up to view profile info.");
     }
   };
 
-  const togglePasswordVisibility = () => {
-    setShowPassword((prev) => !prev);
-  };
+  if (!user) return null;
 
   return (
-    <div className="login-form">
-      <h2>Login</h2>
-      {submitted && <p className="success">Login successful!</p>}
-      {authError && <p className="error">{authError}</p>}
-
-      <form onSubmit={handleSubmit} noValidate>
-        <div>
-          <label>Email:</label>
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-          />
-          {errors.email && <span className="error">{errors.email}</span>}
+    <div className="user-profile-container">
+      <img
+        src={user.image}
+        alt="Profile"
+        className="profile-img"
+        onClick={handleProfileClick}
+      />
+      {showProfile && (
+        <div className="profile-info">
+          <h3>{user.name}</h3>
+          <p><strong>Email:</strong> {user.email}</p>
+          <p><strong>Quiz Level:</strong> {user.quizLevel}</p>
+          <p><strong>Score:</strong> {user.score}</p>
+          <p><strong>Points:</strong> {user.points}</p>
         </div>
-
-        <div>
-          <label>Password:</label>
-          <input
-            type={showPassword ? "text" : "password"} // 👈 Toggle here
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-          />
-          {errors.password && <span className="error">{errors.password}</span>}
-          <div>
-            <input
-              type="checkbox"
-              id="showPassword"
-              checked={showPassword}
-              onChange={togglePasswordVisibility}
-            />
-            <label htmlFor="showPassword">Show Password</label>
-          </div>
-        </div>
-
-        <button type="submit">Login</button>
-      </form>
+      )}
     </div>
   );
-}
+};
 
-export default LoginForm;
+export default UserProfile;
